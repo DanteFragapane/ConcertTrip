@@ -1,2 +1,2 @@
-# DMF-Gaming
-An app that will tell you what games are coming out this year by genre, tell you details about the game, and for somewhere to preorder it.
+# DMF-Records
+An app that will allow you to input an artist's name, and give back details about the artist and concerts.
