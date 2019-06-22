@@ -11,6 +11,7 @@ var settings = {
   'async': true,
   'crossDomain': true,
   'url': 'https://accounts.spotify.com/api/token',
+  dataType: 'jsonp',
   'method': 'POST',
   'headers': {
     'Content-Type': 'application/x-www-form-urlencoded',
