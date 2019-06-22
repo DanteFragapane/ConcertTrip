@@ -1,17 +1,34 @@
-const url = 'https://api.musixmatch.com/ws/1.1/artist.search?'
-const api_key = 'a669389450300699ff0a296b2323e688'
+const url = 'https://api.spotify.com/v1/search?'
+const apiTokenEndpoint = 'https://accounts.spotify.com/api/token'
+const clientId = '4fd7a3464d9a42b3b839a4db644067c4'
+const clientSecret = 'de44091eeac14f2290afee5f5156b863'
+
+$.ajax({
+  type: 'POST',
+  url: apiTokenEndpoint,
+  crossDomain: true,
+  data: {
+    'grant_type': 'client_credentials'
+  },
+  beforeSend: function (xhr) {
+    xhr.setRequestHeader('Authorization', btoa(clientId + ':' + clientSecret))
+  }
+}).then((response) => {
+  console.log(response)
+})
 
 const searchArtist = function searchArtist(artistName) {
   const fullUrl = url + $.param({
-    apikey: api_key,
     q_artist: artistName
   })
-  console.log(fullUrl)
 
   $.ajax({
     url: fullUrl,
     method: 'GET',
-    dataType: 'jsonp'
+    beforeSend: (xhr) => {
+      /* Authorization header */
+      xhr.setRequestHeader('Authorization', apiKey)
+    }
   }).then((response) => {
     console.log(response)
   })
