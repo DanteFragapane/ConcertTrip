@@ -54,17 +54,6 @@ const searchArtist = function searchArtist(artistName) {
       console.log(artist)
     })
   })
-
-  // $.ajax({
-  //   url: fullUrl,
-  //   method: 'GET',
-  //   beforeSend: (xhr) => {
-  //     /* Authorization header */
-  //     xhr.setRequestHeader('Authorization', apiKey)
-  //   }
-  // }).then((response) => {
-  //   console.log(response)
-  // })
 }
 
 const createResults = function createResults(artistObj) {
