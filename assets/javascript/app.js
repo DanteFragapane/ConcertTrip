@@ -5,8 +5,8 @@ const songKick = 'https://api.songkick.com/api/3.0'
 
 const clientId = '4fd7a3464d9a42b3b839a4db644067c4'
 const clientSecret = 'de44091eeac14f2290afee5f5156b863'
+const apiSongKick = 'VvQYn6KSt5RXRyuY'
 let accessToken = ''
-const apiSongKick = ''
 
 const returnBasic = function (id, secret) {
   return 'Basic ' + window.btoa(id + ':' + secret)
@@ -17,9 +17,13 @@ const searchArtist = function searchArtist(artistName) {
     q: artistName,
     type: 'artist'
   })
-  const songKickFull = songKick + '/search/artist.json?' + $.param({
+  const songKickArtistSearch = songKick + '/artists.json?' + $.param({
     apikey: apiSongKick,
     query: artistName
+  })
+  const songKickVenueSearch = songKick + '/events.json?' + $.param({
+    apikey: apiSongKick,
+    artist_name: artistName
   })
 
   $.ajax({
@@ -46,12 +50,12 @@ const searchArtist = function searchArtist(artistName) {
     })
   })
 
-
   $.ajax({
-    url: songKickFull,
+    url: songKickVenueSearch,
     method: 'GET'
   }).then((response) => {
-    console.log(response)
+    let results = response.resultsPage.results.event
+    console.log(results)
   })
 }
 
