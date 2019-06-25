@@ -56,8 +56,7 @@ const searchArtist = function searchArtist(artistName) {
         url: songKickVenueSearch,
         method: 'GET'
       }).then((response) => {
-        let results = response.resultsPage.results.event
-        createResults(results, artist)
+        createResults(response, artist)
       })
     })
   })
@@ -65,6 +64,7 @@ const searchArtist = function searchArtist(artistName) {
 
 // Create and show the results of ``events`` and ``artists``
 const createResults = function createResults(events, artist) {
+  console.log(events)
   $('#results').html('')
   let $div = $('<div>')
   $div.append($('<h1>', {
@@ -79,8 +79,47 @@ const createResults = function createResults(events, artist) {
   $div.append($('<h4>', {
     text: `Genres: ${artist.genres.join(', ')}`
   }))
-
   $('#results').append($div)
+
+  const eventList = events.resultsPage.results.event
+  console.log(eventList)
+  createTable(eventList)
+  if (events.resultsPage.results.event.length === 0) {
+    $div.append($('<h4>', {
+      text: 'No event found!'
+    }))
+  } else {
+    return true
+  }
+}
+
+const createTable = function (eventList) {
+  console.log('createTable')
+  const $thead = $('<thead>')
+  const $tr = $thead.append($('<tr>'))
+  $tr.append($('<th>', {
+    scope: 'col',
+    text: 'Type'
+  }))
+  $tr.append($('<th>', {
+    scope: 'col',
+    text: 'Event Name'
+  }))
+  $tr.append($('<th>', {
+    scope: 'col',
+    text: 'Start Date'
+  }))
+  $tr.append($('<th>', {
+    scope: 'col',
+    text: 'Location'
+  }))
+  $tr.append($('<th>', {
+    scope: 'col',
+    text: 'Link'
+  }))
+  const $table = $('<table id="table"').append($thead)
+  console.log('Test')
+  $('#events').append($table)
 }
 
 // On submit of the form
