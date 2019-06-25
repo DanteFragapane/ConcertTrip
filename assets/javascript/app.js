@@ -16,10 +16,6 @@ const searchArtist = function searchArtist(artistName) {
     q: artistName,
     type: 'artist'
   })
-  const songKickArtistSearch = songKick + '/artists.json?' + $.param({
-    apikey: apiSongKick,
-    query: artistName
-  })
   const songKickVenueSearch = songKick + '/events.json?' + $.param({
     apikey: apiSongKick,
     artist_name: artistName
