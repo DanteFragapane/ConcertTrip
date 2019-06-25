@@ -69,13 +69,13 @@ const createResults = function createResults(events, artist) {
   $div.append($('<h1>', {
     text: artist.name
   }))
-  $div.append($('<h2>', {
+  $div.append($('<h4>', {
     text: `Popularity on Spotify: ${artist.popularity}`
   }))
-  $div.append($('<h2>', {
+  $div.append($('<h4>', {
     text: `Followers on Spotify: ${artist.followers.total}`
   }))
-  $div.append($('<h2>', {
+  $div.append($('<h4>', {
     text: `Genres: ${artist.genres.join(', ')}`
   }))
 
