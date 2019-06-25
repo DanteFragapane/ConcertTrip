@@ -1,5 +1,4 @@
 const spotify = 'https://api.spotify.com/v1/search?'
-const ticketMaster = 'https://app.ticketmaster.com/discovery/v2/'
 const songKick = 'https://api.songkick.com/api/3.0'
 
 const clientId = '4fd7a3464d9a42b3b839a4db644067c4'
@@ -11,6 +10,7 @@ const returnBasic = function (id, secret) {
   return 'Basic ' + window.btoa(id + ':' + secret)
 }
 
+// Initiate the searches for the artist and venues
 const searchArtist = function searchArtist(artistName) {
   const spotifyFull = spotify + $.param({
     q: artistName,
@@ -63,6 +63,7 @@ const searchArtist = function searchArtist(artistName) {
   })
 }
 
+// Create and show the results of ``events`` and ``artists``
 const createResults = function createResults(events, artist) {
   $('#results').html('')
   let $div = $('<div>')
@@ -82,6 +83,7 @@ const createResults = function createResults(events, artist) {
   $('#results').append($div)
 }
 
+// On submit of the form
 $('#form').on('submit', (event) => {
   event.preventDefault()
   searchArtist($('#artist').val().trim())
