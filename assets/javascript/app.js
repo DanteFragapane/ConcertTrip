@@ -1,4 +1,3 @@
-
 const spotify = 'https://api.spotify.com/v1/search?'
 const ticketMaster = 'https://app.ticketmaster.com/discovery/v2/'
 const songKick = 'https://api.songkick.com/api/3.0'
@@ -26,6 +25,7 @@ const searchArtist = function searchArtist(artistName) {
     artist_name: artistName
   })
 
+  // Do the client authentication process
   $.ajax({
     'async': true,
     'crossDomain': true,
@@ -37,7 +37,8 @@ const searchArtist = function searchArtist(artistName) {
     }
   }).then(function (response) {
     accessToken = response.access_token
-    console.log(accessToken)
+
+    // Do the search for artist info
     $.ajax({
       url: spotifyFull,
       method: 'GET',
@@ -45,22 +46,40 @@ const searchArtist = function searchArtist(artistName) {
         'Authorization': 'Bearer ' + accessToken
       }
     }).then((response) => {
+      if (response.artists.items.length === 0) {
+        return false
+      }
       const artist = response.artists.items[0]
-      console.log(artist)
-    })
-  })
 
-  $.ajax({
-    url: songKickVenueSearch,
-    method: 'GET'
-  }).then((response) => {
-    let results = response.resultsPage.results.event
-    console.log(results)
+      // Do the search for venues on SongKick
+      $.ajax({
+        url: songKickVenueSearch,
+        method: 'GET'
+      }).then((response) => {
+        let results = response.resultsPage.results.event
+        createResults(results, artist)
+      })
+    })
   })
 }
 
-const createResults = function createResults(artistObj) {
-  return true
+const createResults = function createResults(events, artist) {
+  $('#results').html('')
+  let $div = $('<div>')
+  $div.append($('<h1>', {
+    text: artist.name
+  }))
+  $div.append($('<h2>', {
+    text: `Popularity on Spotify: ${artist.popularity}`
+  }))
+  $div.append($('<h2>', {
+    text: `Followers on Spotify: ${artist.followers.total}`
+  }))
+  $div.append($('<h2>', {
+    text: `Genres: ${artist.genres.join(', ')}`
+  }))
+
+  $('#results').append($div)
 }
 
 $('#form').on('submit', (event) => {
