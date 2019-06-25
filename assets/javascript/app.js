@@ -60,7 +60,6 @@ const searchArtist = function searchArtist(artistName) {
 
 // Create and show the results of ``events`` and ``artists``
 const createResults = function createResults(events, artist) {
-  console.log(events)
   $('#results').html('')
   let $div = $('<div>')
   $div.append($('<h1>', {
@@ -78,7 +77,6 @@ const createResults = function createResults(events, artist) {
   $('#results').append($div)
 
   const eventList = events.resultsPage.results.event
-  console.log(eventList)
   createTable(eventList)
   if (events.resultsPage.results.event.length === 0) {
     $div.append($('<h4>', {
@@ -90,7 +88,6 @@ const createResults = function createResults(events, artist) {
 }
 
 const createTable = function (eventList) {
-  console.log('createTable')
   const $thead = $('<thead>')
   const $tr = $thead.append($('<tr>'))
   $tr.append($('<th>', {
