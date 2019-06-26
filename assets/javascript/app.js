@@ -43,6 +43,10 @@ const searchArtist = function searchArtist(artistName) {
       }
     }).then((response) => {
       if (response.artists.items.length === 0) {
+        $('#results').html('')
+        $('#results').append($('<h1>', {
+          text: `No results found for the artist '${artistName}'`
+        }))
         return false
       }
       const artist = response.artists.items[0]
@@ -56,7 +60,6 @@ const searchArtist = function searchArtist(artistName) {
       }).catch((err) => {
         console.error(err)
       })
-      // TODO: Add in error handling
     }).catch((err) => {
       console.error(err)
     })
