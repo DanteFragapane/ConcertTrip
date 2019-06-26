@@ -75,7 +75,6 @@ const createResults = function createResults(events, artist) {
   $div.append($('<h1>', {
     text: artist.name
   }))
-  console.log(artist)
   if (artist.genres.length > 0) {
     $div.append($('<h4>', {
       text: `Genres: ${artist.genres.join(', ')}`
