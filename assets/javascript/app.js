@@ -75,9 +75,17 @@ const createResults = function createResults(events, artist) {
   $div.append($('<h1>', {
     text: artist.name
   }))
-  $div.append($('<h4>', {
-    text: `Genres: ${artist.genres.join(', ')}`
-  }))
+  console.log(artist)
+  if (artist.genres.length > 0) {
+    $div.append($('<h4>', {
+      text: `Genres: ${artist.genres.join(', ')}`
+    }))
+  } else {
+    $div.append($('<h4>', {
+      text: `No genres found`
+    }))
+  }
+
   $div.append($('<img>', {
     src: artist.images[0].url,
     alt: `Image of ${artist.name}`
