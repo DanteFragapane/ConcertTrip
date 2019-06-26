@@ -84,6 +84,7 @@ const createResults = function createResults(events, artist) {
 // Generates the table
 // date, venue name, contact (link)
 createTable = function createTable (venueList) {
+  $('#events').html('')
   const $table = $('<table>', {
     class: 'table',
     id: 'table'
