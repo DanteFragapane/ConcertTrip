@@ -52,16 +52,21 @@ const searchArtist = function searchArtist(artistName) {
         url: ticketMasterSearch,
         method: 'GET'
       }).then((response) => {
-        createResults(response._embedded.events, artist)
+        createResults(response, artist)
+      }).catch((err) => {
+        console.error(err)
       })
       // TODO: Add in error handling
+    }).catch((err) => {
+      console.error(err)
     })
+  }).catch((err) => {
+    console.error(err)
   })
 }
 
 // Create and show the results of ``events`` and ``artists``
 const createResults = function createResults(events, artist) {
-  console.log()
   $('#results').html('')
   let $div = $('<div>')
   $div.append($('<h1>', {
@@ -76,14 +81,20 @@ const createResults = function createResults(events, artist) {
   }))
   $('#results').append($div)
 
-  const eventList = events
-
-  createTable(events)
+  if (events._embedded !== undefined) {
+    const eventList = events._embedded.events
+    createTable(eventList)
+  } else {
+    $('#events').html('')
+    $('#results').append($('<h4>', {
+      text: 'No events found.'
+    }))
+  }
 }
 
 // Generates the table
 // date, venue name, contact (link)
-createTable = function createTable (venueList) {
+const createTable = function createTable(venueList) {
   $('#events').html('')
   const $table = $('<table>', {
     class: 'table',
@@ -128,12 +139,10 @@ createTable = function createTable (venueList) {
     $tbody.append($tr)
   })
 
-
   $table.append($tbody)
 
   // Append the entire table to the page at once
   $('#events').append($table)
-  
 }
 
 // On submit of the form
