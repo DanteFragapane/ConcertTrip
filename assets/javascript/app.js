@@ -83,7 +83,6 @@ const createResults = function createResults(events, artist) {
 // Generates the table
 // date, venue name, contact (link)
 createTable = function createTable (venueList) {
-  console.log(venueList)
   const $table = $('<table>', {
     class: 'table',
     id: 'table'
@@ -112,7 +111,6 @@ createTable = function createTable (venueList) {
   // Create the table data
   const $tbody = $('<tbody>')
   venueList.forEach((venue) => {
-    console.log(venue)
     $tr = $('<tr>')
     $tr.append($('<th>', {
       scope: 'row',
@@ -128,7 +126,7 @@ createTable = function createTable (venueList) {
     $tbody.append($tr)
   })
 
- 
+
   $table.append($tbody)
 
   // Append the entire table to the page at once
