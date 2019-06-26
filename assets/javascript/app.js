@@ -54,6 +54,7 @@ const searchArtist = function searchArtist(artistName) {
       }).then((response) => {
         createResults(response._embedded.events, artist)
       })
+      // TODO: Add in error handling
     })
   })
 }
