@@ -1,9 +1,9 @@
 const spotify = 'https://api.spotify.com/v1/search?'
-const songKick = 'https://api.songkick.com/api/3.0'
+const ticketMaster = 'https://app.ticketmaster.com/discovery/v2/'
 
 const clientId = '4fd7a3464d9a42b3b839a4db644067c4'
 const clientSecret = 'de44091eeac14f2290afee5f5156b863'
-const apiSongKick = 'VvQYn6KSt5RXRyuY'
+const apiTicketMaster = 'bSk42f1PrtXtUVQRKN5XSkQSwh8FtCTu'
 let accessToken = ''
 
 const returnBasic = function (id, secret) {
@@ -16,9 +16,9 @@ const searchArtist = function searchArtist(artistName) {
     q: artistName,
     type: 'artist'
   })
-  const songKickVenueSearch = songKick + '/events.json?' + $.param({
-    apikey: apiSongKick,
-    artist_name: artistName
+  const ticketMasterSearch = ticketMaster + '/events.json?' + $.param({
+    apikey: apiTicketMaster,
+    keyword: artistName
   })
 
   // Do the client authentication process
@@ -49,10 +49,10 @@ const searchArtist = function searchArtist(artistName) {
 
       // Do the search for venues on SongKick
       $.ajax({
-        url: songKickVenueSearch,
+        url: ticketMasterSearch,
         method: 'GET'
       }).then((response) => {
-        createResults(response, artist)
+        createResults(response._embedded.events, artist)
       })
     })
   })
@@ -60,62 +60,80 @@ const searchArtist = function searchArtist(artistName) {
 
 // Create and show the results of ``events`` and ``artists``
 const createResults = function createResults(events, artist) {
-  console.log(events)
+  console.log()
   $('#results').html('')
   let $div = $('<div>')
   $div.append($('<h1>', {
     text: artist.name
   }))
   $div.append($('<h4>', {
-    text: `Popularity on Spotify: ${artist.popularity}`
-  }))
-  $div.append($('<h4>', {
-    text: `Followers on Spotify: ${artist.followers.total}`
-  }))
-  $div.append($('<h4>', {
     text: `Genres: ${artist.genres.join(', ')}`
+  }))
+  $div.append($('<img>', {
+    src: artist.images[0].url,
+    alt: `Image of ${artist.name}`
   }))
   $('#results').append($div)
 
-  const eventList = events.resultsPage.results.event
-  console.log(eventList)
-  createTable(eventList)
-  if (events.resultsPage.results.event.length === 0) {
-    $div.append($('<h4>', {
-      text: 'No event found!'
-    }))
-  } else {
-    return true
-  }
+  const eventList = events
+
+  createTable(events)
 }
 
-const createTable = function (eventList) {
-  console.log('createTable')
+// Generates the table
+// date, venue name, contact (link)
+createTable = function createTable (venueList) {
+  console.log(venueList)
+  const $table = $('<table>', {
+    class: 'table',
+    id: 'table'
+  })
+
+  // ==================================
+  // Create the table header
   const $thead = $('<thead>')
-  const $tr = $thead.append($('<tr>'))
+  let $tr = $('<tr>')
   $tr.append($('<th>', {
     scope: 'col',
-    text: 'Type'
+    text: 'Date'
   }))
   $tr.append($('<th>', {
     scope: 'col',
-    text: 'Event Name'
+    text: 'Venue Name'
   }))
   $tr.append($('<th>', {
     scope: 'col',
-    text: 'Start Date'
+    text: 'Contact'
   }))
-  $tr.append($('<th>', {
-    scope: 'col',
-    text: 'Location'
-  }))
-  $tr.append($('<th>', {
-    scope: 'col',
-    text: 'Link'
-  }))
-  const $table = $('<table id="table"').append($thead)
-  console.log('Test')
+  $thead.append($tr)
+  $table.append($thead)
+
+  // ==================================
+  // Create the table data
+  const $tbody = $('<tbody>')
+  venueList.forEach((venue) => {
+    console.log(venue)
+    $tr = $('<tr>')
+    $tr.append($('<th>', {
+      scope: 'row',
+      text: dateFns.format(venue.dates.start.dateTime, 'MM/DD/YYYY hh:mm A')
+    }))
+    $tr.append($('<td>', {
+      text: venue._embedded.venues[0].name
+    }))
+    $tr.append($('<td>').append($('<a>', {
+      href: venue.url,
+      text: 'Buy tickets!'
+    })))
+    $tbody.append($tr)
+  })
+
+ 
+  $table.append($tbody)
+
+  // Append the entire table to the page at once
   $('#events').append($table)
+  
 }
 
 // On submit of the form
