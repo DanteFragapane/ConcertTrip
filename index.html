@@ -8,35 +8,39 @@
   <title>DMF Records</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Oswald|Rubik+Mono+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+
 </head>
 
 <body>
   <div class="container">
-    <div class="jumbotron jumbotron-fluid text-center">
-      <h1>
-        DMF-Records
+    <div class=" col-lg-12 jumbotron jumbotron-fluid text-center">
+      <h1 class= "text-muted">
+        DMF-Production
       </h1>
       <h4>
         Artist Search
       </h4>
     </div>
-
-    <div class="row">
-      <div id="form">
-        <form id="form">
-          <div class="form-group">
-            <label for="artist">Artist Name</label>
-            <input type="text" class="form-control" id="artist" placeholder="Artist name">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+    <div>
+      <div class="row">
+        <div id="form">
+          <form id="form">
+            <div class="form-group">
+              <label for="artist">Artist Name</label>
+              <input type="text" class="form-control" id="artist" placeholder="Artist name">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
       </div>
-    </div>
-
+      
     <div class="row">
       <div id="results"></div>
     </div>
-    <div class="row">
+    <div class="">
       <div id="events"></div>
     </div>
   </div>
