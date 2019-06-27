@@ -108,7 +108,7 @@ const createResults = function createResults(events, artist) {
 const createTable = function createTable(venueList) {
   $('#events').html('')
   const $table = $('<table>', {
-    class: 'table table-hover table-dark col-12',
+    class: 'table table-hover rounded table-dark col-12',
     id: 'table'
   })
 
