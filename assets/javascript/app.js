@@ -106,6 +106,9 @@ const createResults = function createResults(events, artist) {
 // Generates the table
 // date, venue name, contact (link)
 const createTable = function createTable(venueList) {
+  venueList.sort(function(a, b) {
+    return new Date(a.dates.start.dateTime) - new Date(b.dates.start.dateTime)
+  })
   $('#events').html('')
   const $table = $('<table>', {
     class: 'table table-hover rounded table-dark col-12',
