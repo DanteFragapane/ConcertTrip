@@ -163,4 +163,6 @@ const createTable = function createTable(venueList) {
 $('#form').on('submit', (event) => {
   event.preventDefault()
   searchArtist($('#artist').val().trim())
+  $("#replace").hide();
 })
+

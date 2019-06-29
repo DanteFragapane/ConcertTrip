@@ -1,56 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DMF Records</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Oswald|Rubik+Mono+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+
+  <link rel="stylesheet" href="../DMF-Records/assets/css/style.css">
 
 </head>
 
 <body>
   <div class="container">
-    <div class=" col-lg-12 jumbotron jumbotron-fluid text-center rounded">
-      <h1 class= "text-muted">
-        DMF-Production
-      </h1>
-      <h4>
-        Artist Search
-      </h4>
-    </div>
-    <div>
-      <div class="row">
-        <div id="form">
+
+    <h1 class="brand"><span>Concert</span>Trip</h1>
+
+    <div class="wrapper animated bounceInLeft">
+
+      <div class="marketing">
+        <h3>Road trip season is upon us.</h3>
+        <p>Here's an idea! Follow you favorite artists as they tour the Country. </p>
+      </div>
+
+      <div id="form" class="contact">
+        
+        <div id="replace">
+          <h3>Artist Name</h3>
           <form id="form">
-            <div class="form-group">
-              <label for="artist">Artist Name</label>
+            <p>
               <input type="text" class="form-control" id="artist" placeholder="Artist name">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            </p>
+            <br>
+            <p class="full">
+              <button type="submit">Submit</button>
+            </p>
           </form>
         </div>
+      <div class="row">
+        <div id="results"></div>
       </div>
-      
-    <div class="row">
-      <div id="results"></div>
-    </div>
-    <div class="">
-      <div id="events"></div>
-    </div>
+      <div class="">
+        <div id="events"></div>
+      </div>
   </div>
 
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      </div>
+      
+    </div>
+
+
+
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.min.js"
     integrity="sha256-wCBClaCr6pJ7sGU5kfb3gQMOOcIZNzaWpWcj/lD9Vfk=" crossorigin="anonymous"></script>
-  <script src='assets/javascript/app.js'></script>
+  <script src='../DMF-Records/assets/javascript/app.js'></script>
 </body>
-
 </html>
