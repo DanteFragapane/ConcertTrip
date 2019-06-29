@@ -110,6 +110,7 @@ const createResults = function createResults(events, artist) {
 // Generates the table
 // date, venue name, contact (link)
 const createTable = function createTable(venueList) {
+  console.log(venueList)
   venueList.sort(function (a, b) {
     return new Date(a.dates.start.dateTime) - new Date(b.dates.start.dateTime)
   })
@@ -142,14 +143,24 @@ const createTable = function createTable(venueList) {
   // Create the table data
   const $tbody = $('<tbody>')
   venueList.forEach((venue) => {
+    const venue0 = venue._embedded.venues[0]
+    console.log(venue)
     $tr = $('<tr>')
     $tr.append($('<th>', {
       scope: 'row',
       text: dateFns.format(venue.dates.start.dateTime, 'MM/DD/YYYY hh:mm A')
     }))
-    $tr.append($('<td>', {
-      text: venue._embedded.venues[0].name
-    }))
+    if (venue0.name === undefined) {
+      $tr.append($('<td>', {
+        text: `No name given,
+      ${venue0.city.name}, ${venue0.country.countryCode}`
+      }))
+    } else {
+      $tr.append($('<td>', {
+        text: `${venue0.name},
+      ${venue0.city.name}, ${venue0.country.countryCode}`
+      }))
+    }
     $tr.append($('<td>').append($('<button>', {
       onclick: `document.location.href='${venue.url}';`,
       text: 'tickets'
