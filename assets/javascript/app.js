@@ -75,7 +75,7 @@ const createResults = function createResults(events, artist) {
   const $marketing = $('.marketing')
   $marketing.append($('<h1>', {
     text: artist.name,
-    class: 'text-center'
+    class: 'push'
   }))
 
   $marketing.append($('<img>', {
@@ -86,13 +86,12 @@ const createResults = function createResults(events, artist) {
   if (artist.genres.length > 0) {
     $marketing.append($('<h4>', {
       text: `Genres: ${artist.genres.join(', ')}`,
-
+      class: 'push'
     }))
   } else {
     $marketing.append($('<h4>', {
       text: `No genres found`,
-      class: 'text-center'
-
+      class: 'push'
     }))
   }
   $('#results').append($div)
@@ -134,7 +133,7 @@ const createTable = function createTable(venueList) {
   }))
   $tr.append($('<th>', {
     scope: 'col',
-    text: 'Contact'
+    text: 'Box Office'
   }))
   $thead.append($tr)
   $table.append($thead)
@@ -151,9 +150,9 @@ const createTable = function createTable(venueList) {
     $tr.append($('<td>', {
       text: venue._embedded.venues[0].name
     }))
-    $tr.append($('<td>').append($('<a>', {
+    $tr.append($('<td>').append($('<button>', {
       href: venue.url,
-      text: 'Buy tickets!'
+      text: 'tickets'
     })))
     $tbody.append($tr)
   })

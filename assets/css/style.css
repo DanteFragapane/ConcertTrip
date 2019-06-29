@@ -76,6 +76,35 @@ body{
   transition: background-color 2s ease-out;
 }
 
+button {
+  background:#c9e6ff;
+  width:100%;
+  padding:1em;
+  border:1px solid #c9e6ff;
+  border:0;
+  text-transform: uppercase;
+}
+
+button:hover, button:focus {
+  background:#92bde7;
+  color:#fff;
+  outline:0;
+  transition: background-color 2s ease-out;
+}
+
+.push {
+  margin-left: 1rem;
+}
+
+a {
+  color: #485e74
+}
+
+a:hover {
+  text-decoration: none;
+  color: #485e74
+}
+
 /* LARGE SCREENS */
 @media(min-width:700px){
   .wrapper{
