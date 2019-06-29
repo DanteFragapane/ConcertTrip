@@ -91,7 +91,7 @@ const createResults = function createResults(events, artist) {
   } else {
     $marketing.append($('<h4>', {
       text: `No genres found`,
-      class: 'push'
+      class: 'push '
     }))
   }
   $('#results').append($div)
@@ -151,7 +151,7 @@ const createTable = function createTable(venueList) {
       text: venue._embedded.venues[0].name
     }))
     $tr.append($('<td>').append($('<button>', {
-      href: venue.url,
+      onclick: `document.location.href='${venue.url}';`,
       text: 'tickets'
     })))
     $tbody.append($tr)
