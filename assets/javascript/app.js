@@ -11,7 +11,7 @@ const returnBasic = function (id, secret) {
 }
 
 // Initiate the searches for the artist and venues
-const searchArtist = function searchArtist(artistName) {
+const searchArtist = function searchArtist (artistName) {
   const spotifyFull = spotify + $.param({
     q: artistName,
     type: 'artist'
@@ -69,7 +69,7 @@ const searchArtist = function searchArtist(artistName) {
 }
 
 // Create and show the results of ``events`` and ``artists``
-const createResults = function createResults(events, artist) {
+const createResults = function createResults (events, artist) {
   $('#results').html('')
   let $div = $('<div>')
   $div.append($('<h1>', {
@@ -105,8 +105,8 @@ const createResults = function createResults(events, artist) {
 
 // Generates the table
 // date, venue name, contact (link)
-const createTable = function createTable(venueList) {
-  venueList.sort(function(a, b) {
+const createTable = function createTable (venueList) {
+  venueList.sort(function (a, b) {
     return new Date(a.dates.start.dateTime) - new Date(b.dates.start.dateTime)
   })
   $('#events').html('')
@@ -162,7 +162,11 @@ const createTable = function createTable(venueList) {
 // On submit of the form
 $('#form').on('submit', (event) => {
   event.preventDefault()
-  searchArtist($('#artist').val().trim())
-  $("#replace").hide();
+  const artist = $('#artist').val().trim()
+  if (artist === '') {
+    return false
+  }
+  searchArtist(artist)
+  $('#replace').hide()
 })
-
+q 
