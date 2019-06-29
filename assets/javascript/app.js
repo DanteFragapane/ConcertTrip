@@ -11,7 +11,7 @@ const returnBasic = function (id, secret) {
 }
 
 // Initiate the searches for the artist and venues
-const searchArtist = function searchArtist (artistName) {
+const searchArtist = function searchArtist(artistName) {
   const spotifyFull = spotify + $.param({
     q: artistName,
     type: 'artist'
@@ -69,27 +69,32 @@ const searchArtist = function searchArtist (artistName) {
 }
 
 // Create and show the results of ``events`` and ``artists``
-const createResults = function createResults (events, artist) {
+const createResults = function createResults(events, artist) {
   $('#results').html('')
   let $div = $('<div>')
-  $div.append($('<h1>', {
-    text: artist.name
+  const $marketing = $('.marketing')
+  $marketing.append($('<h1>', {
+    text: artist.name,
+    class: 'text-center'
   }))
-  if (artist.genres.length > 0) {
-    $div.append($('<h4>', {
-      text: `Genres: ${artist.genres.join(', ')}`
-    }))
-  } else {
-    $div.append($('<h4>', {
-      text: `No genres found`
-    }))
-  }
 
-  $div.append($('<img>', {
-    class: 'rounded-circle col-lg-3 col-md-6',
+  $marketing.append($('<img>', {
+    class: 'col',
     src: artist.images[0].url,
     alt: `Image of ${artist.name}`
   }))
+  if (artist.genres.length > 0) {
+    $marketing.append($('<h4>', {
+      text: `Genres: ${artist.genres.join(', ')}`,
+
+    }))
+  } else {
+    $marketing.append($('<h4>', {
+      text: `No genres found`,
+      class: 'text-center'
+
+    }))
+  }
   $('#results').append($div)
 
   if (events._embedded !== undefined) {
@@ -105,13 +110,13 @@ const createResults = function createResults (events, artist) {
 
 // Generates the table
 // date, venue name, contact (link)
-const createTable = function createTable (venueList) {
+const createTable = function createTable(venueList) {
   venueList.sort(function (a, b) {
     return new Date(a.dates.start.dateTime) - new Date(b.dates.start.dateTime)
   })
   $('#events').html('')
   const $table = $('<table>', {
-    class: 'table table-hover rounded table-dark col-12',
+    class: 'table table-hover rounded col-12',
     id: 'table'
   })
 
@@ -168,5 +173,5 @@ $('#form').on('submit', (event) => {
   }
   searchArtist(artist)
   $('#replace').hide()
+  $('.marketing').html('')
 })
-q 

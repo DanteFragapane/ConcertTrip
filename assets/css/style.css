@@ -10,11 +10,6 @@ body{
   padding:1em;
 }
 
-img{
-    border-style: ridge;
-    background: rgba(0, 0, 0, 0.438);
-}
-
 .container{
   max-width:1170px;
   margin-left:auto;
