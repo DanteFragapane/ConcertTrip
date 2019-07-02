@@ -139,8 +139,12 @@ a:hover {
 @media screen and (max-width: 360px) {
 
   .container{
+    Width: min-content;
+  }
 
-  
-width: min-content;
+  .body{
+    max-width: 360px;
+    padding: 0rem;
+    margin: -17px;
   }
 }
