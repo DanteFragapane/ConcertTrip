@@ -110,9 +110,8 @@ const createResults = function createResults(events, artist) {
 // Generates the table
 // date, venue name, contact (link)
 const createTable = function createTable(venueList) {
-  console.log(venueList)
   venueList.sort(function (a, b) {
-    return new Date(a.dates.start.dateTime) - new Date(b.dates.start.dateTime)
+    return new Date(a.dates.start.localDate) - new Date(b.dates.start.localDate)
   })
   $('#events').html('')
   const $table = $('<table>', {
@@ -144,12 +143,18 @@ const createTable = function createTable(venueList) {
   const $tbody = $('<tbody>')
   venueList.forEach((venue) => {
     const venue0 = venue._embedded.venues[0]
-    console.log(venue)
     $tr = $('<tr>')
-    $tr.append($('<th>', {
-      scope: 'row',
-      text: dateFns.format(venue.dates.start.dateTime, 'MM/DD/YYYY hh:mm A')
-    }))
+    if (venue.dates.start.noSpecificTime) {
+      $tr.append($('<th>', {
+        scope: 'row',
+        text: dateFns.format(venue.dates.start.localDate, 'MM/DD/YYYY')
+      }))
+    } else {
+      $tr.append($('<th>', {
+        scope: 'row',
+        text: dateFns.format(venue.dates.start.dateTime, 'MM/DD/YYYY hh:mm A')
+      }))
+    }
     if (venue0.name === undefined) {
       $tr.append($('<td>', {
         text: `No name given,
