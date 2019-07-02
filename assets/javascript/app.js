@@ -153,7 +153,8 @@ const createTable = function createTable(venueList) {
     // Main ``<tr>`` for the table
     $tr = $('<tr>')
     // If there is not a specific time specified
-    if (venue.dates.start.noSpecificTime) {
+    console.log(venue.dates.start)
+    if (venue.dates.start.noSpecificTime || venue.dates.start.timeTBA) {
       $tr.append($('<th>', {
         scope: 'row',
         text: dateFns.format(venue.dates.start.localDate, 'MM/DD/YYYY')
