@@ -1,3 +1,4 @@
+// Initialize the variables needed
 const spotify = 'https://api.spotify.com/v1/search?'
 const ticketMaster = 'https://app.ticketmaster.com/discovery/v2/'
 
@@ -6,6 +7,7 @@ const clientSecret = 'de44091eeac14f2290afee5f5156b863'
 const apiTicketMaster = 'bSk42f1PrtXtUVQRKN5XSkQSwh8FtCTu'
 let accessToken = ''
 
+// Return the Basic authentication token
 const returnBasic = function (id, secret) {
   return 'Basic ' + window.btoa(id + ':' + secret)
 }
@@ -42,6 +44,7 @@ const searchArtist = function searchArtist(artistName) {
         'Authorization': 'Bearer ' + accessToken
       }
     }).then((response) => {
+      // If there is no results on Spotify
       if (response.artists.items.length === 0) {
         $('#results').html('')
         $('#results').append($('<h1>', {
@@ -78,24 +81,29 @@ const createResults = function createResults(events, artist) {
     class: 'push'
   }))
 
+  // Append the artist's image to the ``#marketing`` div
   $marketing.append($('<img>', {
     class: 'col rounded',
     src: artist.images[0].url,
     alt: `Image of ${artist.name}`
   }))
+  // Append the artist's genres to the ``#marketing`` div if there are genres
   if (artist.genres.length > 0) {
     $marketing.append($('<h4>', {
       text: `Genres: ${artist.genres.join(', ')}`,
       class: 'push'
     }))
   } else {
+    // If no genres are present
     $marketing.append($('<h4>', {
       text: `No genres found`,
       class: 'push '
     }))
   }
+  // Append the entire ``$div`` div to the ``#results`` div
   $('#results').append($div)
 
+  // If there are events found
   if (events._embedded !== undefined) {
     const eventList = events._embedded.events
     createTable(eventList)
@@ -110,9 +118,8 @@ const createResults = function createResults(events, artist) {
 // Generates the table
 // date, venue name, contact (link)
 const createTable = function createTable(venueList) {
-  console.log(venueList)
   venueList.sort(function (a, b) {
-    return new Date(a.dates.start.dateTime) - new Date(b.dates.start.dateTime)
+    return new Date(a.dates.start.localDate) - new Date(b.dates.start.localDate)
   })
   $('#events').html('')
   const $table = $('<table>', {
@@ -144,30 +151,42 @@ const createTable = function createTable(venueList) {
   const $tbody = $('<tbody>')
   venueList.forEach((venue) => {
     const venue0 = venue._embedded.venues[0]
-    console.log(venue)
+    // Main ``<tr>`` for the table
     $tr = $('<tr>')
-    $tr.append($('<th>', {
-      scope: 'row',
-      text: dateFns.format(venue.dates.start.dateTime, 'MM/DD/YYYY hh:mm A')
-    }))
+    // If there is a specific time specified
+    if (venue.dates.start.noSpecificTime) {
+      $tr.append($('<th>', {
+        scope: 'row',
+        text: dateFns.format(venue.dates.start.localDate, 'MM/DD/YYYY')
+      }))
+      // If there is no specific time specified
+    } else {
+      $tr.append($('<th>', {
+        scope: 'row',
+        text: dateFns.format(venue.dates.start.dateTime, 'MM/DD/YYYY hh:mm A')
+      }))
+    }
+    // If there is no name for the venue given
     if (venue0.name === undefined) {
       $tr.append($('<td>', {
         text: `No name given,
       ${venue0.city.name}, ${venue0.country.countryCode}`
       }))
+      // If there is a name for the venue
     } else {
       $tr.append($('<td>', {
         text: `${venue0.name},
       ${venue0.city.name}, ${venue0.country.countryCode}`
       }))
     }
+    // Make the "tickets" button
     $tr.append($('<td>').append($('<button>', {
       onclick: `document.location.href='${venue.url}';`,
       text: 'tickets'
     })))
     $tbody.append($tr)
   })
-
+  // Append everything to the table element
   $table.append($tbody)
 
   // Append the entire table to the page at once
