@@ -5,7 +5,6 @@ const ticketMaster = 'https://app.ticketmaster.com/discovery/v2/'
 const clientId = '4fd7a3464d9a42b3b839a4db644067c4'
 const clientSecret = 'de44091eeac14f2290afee5f5156b863'
 const apiTicketMaster = 'bSk42f1PrtXtUVQRKN5XSkQSwh8FtCTu'
-let accessToken = ''
 
 // Return the Basic authentication token
 const returnBasic = function (id, secret) {
@@ -34,7 +33,7 @@ const searchArtist = function searchArtist(artistName) {
       'Authorization': returnBasic(clientId, clientSecret)
     }
   }).then(function (response) {
-    accessToken = response.access_token
+    const accessToken = response.access_token
 
     // Do the search for artist info
     $.ajax({
@@ -154,7 +153,8 @@ const createTable = function createTable(venueList) {
     // Main ``<tr>`` for the table
     $tr = $('<tr>')
     // If there is not a specific time specified
-    if (venue.dates.start.noSpecificTime) {
+    console.log(venue.dates.start)
+    if (venue.dates.start.noSpecificTime || venue.dates.start.timeTBA) {
       $tr.append($('<th>', {
         scope: 'row',
         text: dateFns.format(venue.dates.start.localDate, 'MM/DD/YYYY')
