@@ -1,3 +1,4 @@
+// Initialize the variables needed
 const spotify = 'https://api.spotify.com/v1/search?'
 const ticketMaster = 'https://app.ticketmaster.com/discovery/v2/'
 
@@ -6,6 +7,7 @@ const clientSecret = 'de44091eeac14f2290afee5f5156b863'
 const apiTicketMaster = 'bSk42f1PrtXtUVQRKN5XSkQSwh8FtCTu'
 let accessToken = ''
 
+// Return the Basic authentication token
 const returnBasic = function (id, secret) {
   return 'Basic ' + window.btoa(id + ':' + secret)
 }
