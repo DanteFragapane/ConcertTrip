@@ -79,7 +79,7 @@ const createResults = function createResults(events, artist) {
   }))
 
   $marketing.append($('<img>', {
-    class: 'col',
+    class: 'col rounded',
     src: artist.images[0].url,
     alt: `Image of ${artist.name}`
   }))

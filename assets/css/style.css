@@ -3,11 +3,12 @@
 }
 
 body{
-  background:#92bde7;
+  background:#92bde742;
   color:#485e74;
   line-height:1.6;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding:1em;
+  background-image: url("../images/background.PNG");
 }
 
 .container{
@@ -61,6 +62,10 @@ body{
   width:100%;
   padding:1em;
   border:1px solid #c9e6ff;
+}
+
+.rounded{
+  border-radius: 1.25rem!important;
 }
 
 .contact form button{
