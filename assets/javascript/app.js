@@ -153,13 +153,19 @@ const createTable = function createTable(venueList) {
     const venue0 = venue._embedded.venues[0]
     // Main ``<tr>`` for the table
     $tr = $('<tr>')
-    // If there is a specific time specified
-    if (venue.dates.start.noSpecificTime) {
+    // If there is not a specific time specified
+    if (venue.dates.start.noSpecificTime || venue.dates.start.timeTBA) {
       $tr.append($('<th>', {
         scope: 'row',
         text: dateFns.format(venue.dates.start.localDate, 'MM/DD/YYYY')
       }))
-      // If there is no specific time specified
+      // If the date has yet to be announced or determined
+    } else if (venue.dates.start.dateTBA || venue.dates.start.dateTBD) {
+      $tr.append($('<th>', {
+        scope: 'row',
+        text: 'Date TBA or TBD'
+      }))
+      // If there is a time specified
     } else {
       $tr.append($('<th>', {
         scope: 'row',
