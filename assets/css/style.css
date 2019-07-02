@@ -7,10 +7,14 @@
 }
 
 body{
-  background:#92bde742;
+  background:#80b2e454;
   color:#485e74;
   line-height:1.6;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: 'Rubik Mono One', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Oswald', sans-serif;
+
   padding:1em;
   background-image: url("../images/background.PNG");
 }
@@ -25,7 +29,7 @@ body{
 .brand{
   padding: 1rem;
   text-align: center;
-  background: #CAE6FD
+  background: rgba(202, 230, 253, 0.719)
 }
 
 .brand span{
@@ -71,7 +75,7 @@ body{
 }
 
 .rounded{
-  border-radius: 1.25rem!important;
+  border-radius: 1.75rem!important;
 }
 
 .contact form button{
