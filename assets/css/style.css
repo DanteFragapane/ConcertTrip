@@ -136,3 +136,11 @@ a:hover {
   }
 }
 
+@media screen and (max-width: 360px) {
+
+  .container{
+
+  
+width: min-content;
+  }
+}
