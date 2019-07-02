@@ -116,7 +116,7 @@ const createTable = function createTable(venueList) {
   })
   $('#events').html('')
   const $table = $('<table>', {
-    class: 'table table-hover rounded col-12',
+    class: 'table table-hover rounded col-xs col-12',
     id: 'table'
   })
 

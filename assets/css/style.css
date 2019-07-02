@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.logo{
+  margin-bottom: 1rem;
+}
+
 body{
   background:#92bde742;
   color:#485e74;
@@ -19,7 +23,9 @@ body{
 }
 
 .brand{
+  padding: 1rem;
   text-align: center;
+  background: #CAE6FD
 }
 
 .brand span{
