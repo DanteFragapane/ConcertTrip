@@ -175,7 +175,7 @@ const createTable = function createTable(venueList) {
     // If there is no name for the venue given
     if (!venue0.hasOwnProperty('name') || !venue0.hasOwnProperty('city') || !venue0.hasOwnProperty('country')) {
       $tr.append($('<td>', {
-        text: `No venue information given`
+        text: `Not enough venue information given`
       }))
       // If there is a name for the venue
     } else {
