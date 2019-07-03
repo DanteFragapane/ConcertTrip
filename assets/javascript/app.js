@@ -149,7 +149,6 @@ const createTable = function createTable(venueList) {
   // Create the table data
   const $tbody = $('<tbody>')
   venueList.forEach((venue) => {
-    console.log(venue)
     const venue0 = venue._embedded.venues[0]
     // Main ``<tr>`` for the table
     $tr = $('<tr>')
