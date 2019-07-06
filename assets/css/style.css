@@ -136,6 +136,7 @@ a:hover {
   }
 }
 
+/*extra small sceens*/
 @media screen and (max-width: 360px) {
 
   .container{
