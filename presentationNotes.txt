@@ -1,0 +1,12 @@
+Things to talk about in presentation: 
+  Demo your fav band "panic! at the disco"
+  Discuss functionality like the home button.
+    Nice small detail is the logo acts as a home button, resetting the page
+  The two api’s we deployed.
+    Spotify
+    Ticketmaster
+  The challenges with the api’s.
+    Spotify's authentication 
+    Ticketmaster's crazy object structure
+  The challenges with city and state.
+    Ticketmaster's crazy object structure, with things in '_embedded' and all over the place
