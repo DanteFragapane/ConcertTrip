@@ -153,7 +153,6 @@ const createTable = function createTable(venueList) {
     // Main ``<tr>`` for the table
     $tr = $('<tr>')
     // If there is not a specific time specified
-    console.log(venue.dates.start)
     if (venue.dates.start.noSpecificTime || venue.dates.start.timeTBA) {
       $tr.append($('<th>', {
         scope: 'row',
@@ -173,10 +172,9 @@ const createTable = function createTable(venueList) {
       }))
     }
     // If there is no name for the venue given
-    if (venue0.name === undefined) {
+    if (!venue0.hasOwnProperty('name') || !venue0.hasOwnProperty('city') || !venue0.hasOwnProperty('country')) {
       $tr.append($('<td>', {
-        text: `No name given,
-      ${venue0.city.name}, ${venue0.country.countryCode}`
+        text: `Not enough venue information given`
       }))
       // If there is a name for the venue
     } else {
